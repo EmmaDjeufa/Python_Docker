@@ -1,7 +1,7 @@
 version: "3"
 services:
   www:
-    build: /home/cytech/trw/Python_Docker/docker-compose.yaml  # Utilisez le chemin du Dockerfile ou le contexte de construction du service www
+    build: www #/home/cytech/trw/Python_Docker/docker-compose.yaml  # Utilisez le chemin du Dockerfile ou le contexte de construction du service www
     ports:
       - "${PORT-8000}:5000"
     user: nobody
@@ -11,7 +11,7 @@ services:
     volumes:
       - ./www:/src
   redis:
-    image: ubuntu  # Changez l'image au besoin
+    image: redis  # Changez l'image au besoin
 #networks:
   #default:
     #external: 
