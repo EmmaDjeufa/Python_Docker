@@ -3,7 +3,7 @@ services:
   www:
     build:
       context: /home/cytech/trw/Python_Docker
-      dockerfile: Dockerfile  # Spécifie le nom du fichier Dockerfile
+      dockerfile: docker-compose.yaml  # Spécifie le nom du fichier Dockerfile
     ports:
       - "${PORT-8000}:5000"
     user: nobody
