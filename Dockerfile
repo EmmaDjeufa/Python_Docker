@@ -1,4 +1,4 @@
-FROM python:alpine
+FROM FROM ubuntu:20.04
 RUN pip install flask
 RUN pip install gunicorn
 RUN pip install redis
