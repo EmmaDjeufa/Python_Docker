@@ -1,7 +1,7 @@
 version: "3"
 services:
   www:
-    build: www  # Utilisez le chemin du Dockerfile ou le contexte de construction du service www
+    build: docker-compose.yaml  # Utilisez le chemin du Dockerfile ou le contexte de construction du service www
     ports:
       - "${PORT-8000}:5000"
     user: nobody
