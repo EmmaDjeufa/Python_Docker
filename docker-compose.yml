@@ -1,18 +1,23 @@
-version: "2"
+version: "3"
 services:
-www:
-build: www
-ports:
-  - 8000:5000
-user : nobody
-environment:
-DEBUG: 1
-command: python counter .py
-volumes:
-  - ./www:/src
-redis:
-image: redis
+  www:
+    build: ./www  # Utilisez le chemin du Dockerfile ou le contexte de construction du service www
+    ports:
+      - "${PORT-8000}:5000"
+    user: nobody
+    environment:
+      DEBUG: "1"  # Mettez la valeur entre guillemets
+    command: python counter.py
+    volumes:
+      - ./www:/src
+    networks:
+      - localnet  # Associe le service au réseau localnet
+
+  redis:
+    image: ubuntu  # Changez l'image au besoin
+    networks:
+      - localnet  # Associe le service au réseau localnet
+
 networks:
-default:
-external:
-name: localnet
+  localnet:
+    external: true  # Indique que le réseau est externe
