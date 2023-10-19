@@ -12,7 +12,7 @@ services:
       - ./www:/src
   redis:
     image: ubuntu  # Changez l'image au besoin
-networks:
-  default:
-    external: 
-      name: localnet  # Indique que le réseau est externe
+#networks:
+  #default:
+    #external: 
+      #name: localnet  # Indique que le réseau est externe
