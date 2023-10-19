@@ -1,18 +1,19 @@
 version: "3"
 services:
   www:
-    build: /home/cytech/trw/Python_Docker  # Utilisez le chemin du répertoire contenant le Dockerfile
-    dockerfile: Dockerfile
+    build:
+      context: /home/cytech/trw/Python_Docker
+      dockerfile: Dockerfile  # Spécifie le nom du fichier Dockerfile
     ports:
       - "${PORT-8000}:5000"
     user: nobody
     environment:
-      DEBUG: "1"  # Mettez la valeur entre guillemets
+      DEBUG: "1"
     command: python Calc_Age.py
     volumes:
       - ./www:/src
   redis:
-    image: redis  # Changez l'image au besoin
+    image: redis
 #networks:
   #default:
     #external: 
