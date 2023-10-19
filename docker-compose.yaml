@@ -10,14 +10,9 @@ services:
     command: python counter.py
     volumes:
       - ./www:/src
-    networks:
-      - localnet  # Associe le service au réseau localnet
-
   redis:
     image: ubuntu  # Changez l'image au besoin
-    networks:
-      - localnet  # Associe le service au réseau localnet
-
 networks:
-  localnet:
-    external: true  # Indique que le réseau est externe
+  default:
+    external: 
+      name: localnet  # Indique que le réseau est externe
