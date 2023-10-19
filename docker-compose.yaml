@@ -1,7 +1,7 @@
 version: "3"
 services:
   www:
-    build: /home/cytech/trw/Python_Docker/docker-compose.yaml  # Utilisez le chemin du Dockerfile ou le contexte de construction du service www
+    build: /home/cytech/trw/Python_Docker  # Utilisez le chemin du répertoire contenant le Dockerfile
     ports:
       - "${PORT-8000}:5000"
     user: nobody
@@ -16,3 +16,4 @@ services:
   #default:
     #external: 
       #name: localnet  # Indique que le réseau est externe
+
