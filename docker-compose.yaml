@@ -3,6 +3,7 @@ services:
   www:
     build:
       context: /home/cytech/trw/Python_Docker  # Le chemin du répertoire où se trouve le Dockerfile
+      dockerfile: docker-compose.yaml
     ports:
       - "${PORT-8000}:5000"
     user: nobody
