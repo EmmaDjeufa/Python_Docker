@@ -1,7 +1,17 @@
-FROM FROM ubuntu:20.04
-RUN pip install flask
-RUN pip install gunicorn
-RUN pip install redis
-COPY . /src
-WORKDIR /src
-CMD gunicorn --bind 0.0.0.0:5000 --workers 10 counter:app
+FROM ubuntu:20.04
+RUN apt-get update -q
+RUN apt-get install -yq build-essential make
+RUN apt-get install -yq zlib1g-dev
+RUN apt-get install -yq ruby ruby-dev
+#RUN apt-get install -yq python-pygments
+RUN apt-get install -yq nodejs
+RUN apt-get install -yq cmake
+RUN gem install github-pages
+
+COPY . /blog
+WORKDIR /blog
+
+VOLUME /blog/_site
+
+EXPOSE 4000
+CMD ["jekyll", "serve", "--host", "0.0.0.0", "--incremental", "--verbose"]
