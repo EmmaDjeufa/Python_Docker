@@ -1,5 +1,5 @@
 # Utilisez une image de base (par exemple, Python)
-FROM python:3.8
+FROM python:alpine
 
 # Installez les dépendances nécessaires
 RUN pip install flask gunicorn redis
