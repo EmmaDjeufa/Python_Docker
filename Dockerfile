@@ -1,17 +1,15 @@
-FROM ubuntu:20.04
-RUN apt-get update -q
-RUN apt-get install -yq build-essential make
-RUN apt-get install -yq zlib1g-dev
-RUN apt-get install -yq ruby ruby-dev
-#RUN apt-get install -yq python-pygments
-RUN apt-get install -yq nodejs
-RUN apt-get install -yq cmake
-RUN gem install github-pages
+# Utilisez une image de base (par exemple, Python)
+FROM python:3.8
 
-COPY . /blog
-WORKDIR /blog
+# Installez les dépendances
+RUN pip install flask gunicorn redis
 
-VOLUME /blog/_site
+# Copiez le code source dans le conteneur
+COPY . /src
 
-EXPOSE 4000
-CMD ["jekyll", "serve", "--host", "0.0.0.0", "--incremental", "--verbose"]
+# Définissez le répertoire de travail
+WORKDIR /src
+
+# Commande par défaut à exécuter lorsque le conteneur démarre
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "Calc_Age:app"]
+
