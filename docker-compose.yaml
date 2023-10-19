@@ -13,7 +13,7 @@ services:
     volumes:
       - ./www:/src
   redis:
-    image: redis  # Changez l'image au besoin
+    image: ubuntu  # Changez l'image au besoin
 
 #version: "3"
 #services:
