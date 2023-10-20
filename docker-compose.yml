@@ -9,7 +9,7 @@ services:
     environment:
       DEBUG: 1
     volumes:
-      - ./www:/var/www/html  # Montez votre page HTML dans le répertoire du serveur web
+      - ./www:/www/html  # Montez votre page HTML dans le répertoire du serveur web
   redis:
     image: redis  # Changez l'image au besoin
 
