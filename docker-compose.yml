@@ -7,7 +7,7 @@ services:
     user: nobody
     environment:
       DEBUG: 1
-      DATE_NAISSANCE: 2000-01-01 
+      DATE_NAISSANCE: "2000-01-01" 
     command: python Calc_Age.py
     volumes:
       - ./www:/src
