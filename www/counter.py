@@ -3,7 +3,7 @@
 from flask import Flask, send_file
 import os
 
-app = Flask(__name)
+app = Flask(__name__)
 
 @app.route("/")
 def index():
