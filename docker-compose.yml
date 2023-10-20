@@ -1,0 +1,34 @@
+version: "3"
+services:
+  www:
+    build: www
+      - "${PORT-8000}:5000"
+    user: nobody
+    environment:
+      DEBUG: 1
+    command: python counter.py
+    volumes:
+      - ./www:/src
+  redis:
+    image: redis  # Changez l'image au besoin
+
+#version: "3"
+#services:
+  #www:
+    #build:
+      #context: /home/cytech/trw/Python_Docker
+      #dockerfile: docker-compose.yaml  # Spécifie le nom du fichier Dockerfile
+    #ports:
+      #- "${PORT-8000}:5000"
+    #user: nobody
+    #environment:
+      #DEBUG: "1"
+    #command: python Calc_Age.py
+    #volumes:
+      #- ./www:/src
+  #redis:
+    #image: redis
+#networks:
+  #default:
+    #external: 
+      #name: localnet  # Indique que le réseau est externe
