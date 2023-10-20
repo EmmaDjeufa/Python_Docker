@@ -7,7 +7,6 @@ services:
     user: nobody
     environment:
       DEBUG: 1
-      #DATE_NAISSANCE: "2000-01-01" 
     command: python counter.py
     volumes:
       - ./www:/src
