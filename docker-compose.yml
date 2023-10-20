@@ -11,4 +11,4 @@ services:
     volumes:
       - ./www:/src
   redis:
-    image: redis  # Changez l'image au besoin
+    image: redis  # il est possible de changer l'image au besoin
