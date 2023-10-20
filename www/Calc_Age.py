@@ -1,8 +1,13 @@
 from datetime import datetime
+import os
+import redis
 
 def calculer_age(date_naissance):
     # Convertir la chaîne de date en objet datetime
     date_format = "%Y-%m-%d"
+    date_naissance_utilisateur = os.environ.get("DATE_NAISSANCE", "")
+    if not date_naissance_utilisateur:
+    raise ValueError("Date de naissance manquante. Définissez la variable d'environnement DATE_NAISSANCE.")
 
     try:
         date_naissance = datetime.strptime(date_naissance, date_format)
