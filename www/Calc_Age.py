@@ -9,14 +9,12 @@ def calculer_age(date_naissance):
     except ValueError:
         raise ValueError("Format de date incorrect. Assurez-vous d'utiliser le format YYYY-MM-DD.")
 
-    # Vérifier si la date de naissance est dans le futur
+    # Obtenir la date actuelle
     date_actuelle = datetime.now()
+
+    # Vérifier si la date de naissance est dans le futur
     if date_naissance > date_actuelle:
         raise ValueError("La date de naissance ne peut pas être dans le futur.")
-
-    # Vérifier si le jour et le mois sont valides
-    if date_naissance.month > 12 or date_naissance.day > 31:
-        raise ValueError("Le mois ou le jour de la date de naissance est invalide.")
 
     # Calculer la différence entre les deux dates
     difference = date_actuelle - date_naissance
@@ -38,3 +36,4 @@ try:
 
 except ValueError as e:
     print("Erreur :", e)
+
