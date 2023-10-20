@@ -14,6 +14,7 @@ RUN apt-get update
 
 # Installation d'Apache
 RUN apt-get install -y apache2
+RUN docker build -t my-apache-image
 
 # Copiez votre page HTML dans le répertoire du serveur web d'Apache
 COPY WelcomeING3.html /var/www/html/
