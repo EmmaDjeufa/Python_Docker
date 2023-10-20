@@ -1,18 +1,34 @@
 version: "3"
 services:
   www:
-    build: www
+    build: 
+      context: .
+      dockerfile: Dockerfile
     ports:
-      - ${PORT-8000}:5000
-    user: nobody
+      - ${PORT-8000}:80  # Utilisez le port 80 pour Apache
     environment:
       DEBUG: 1
-      DATE_NAISSANCE: "2000-01-01" 
-    command: python Calc_Age.py
     volumes:
-      - ./www:/src
+      - ./www:/var/www/html  # Montez votre page HTML dans le répertoire du serveur web
   redis:
     image: redis  # Changez l'image au besoin
+
+
+#version: "3"
+#services:
+  #www:
+    #build: www
+    #ports:
+      #- ${PORT-8000}:5000
+    #user: nobody
+    #environment:
+      #DEBUG: 1
+      #DATE_NAISSANCE: "2000-01-01" 
+    #command: python Calc_Age.py
+    #volumes:
+      #- ./www:/src
+  #redis:
+    #image: redis  # Changez l'image au besoin
 
 #version: "3"
 #services:
