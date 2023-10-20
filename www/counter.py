@@ -1,23 +1,43 @@
 #!/usr/bin/env python
 
-from flask import Flask, send_file
+from flask import Flask, send_from_directory, render_template
 import os
+import redis
+import socket
 
-app = Flask(__name)
+
+
+app = Flask(__name__)
+hostname = socket.gethostname()
+redis = redis.Redis("redis")
+
+
+if "DEBUG" in os.environ:
+    app.debug = True
+
+
+@app.errorhandler(500)
+def error(e):
+    return render_template('error.html',
+        hostname=hostname, error=e), 500
+
 
 @app.route("/")
 def index():
-    # Définir le chemin du fichier HTML
-    html_file = "WelcomeING3.html"
+    redis.zincrby("counters", 1, hostname)
+    counters = redis.zrevrange("counters", 0, -1, withscores=True)
+    counters = [ (s.decode(), int(i)) for (s,i) in counters ]
+    thiscount = int(redis.zscore("counters", hostname))
+    totalcount = sum(i for (s,i) in counters)
+    return render_template( "WelcomeING3.html",
+        hostname=hostname, counters=counters,
+        thiscount=thiscount, totalcount=totalcount)
 
-    # Vérifier si le fichier existe
-    if os.path.exists(html_file):
-        # Utiliser Flask pour renvoyer le fichier HTML
-        return send_file(html_file)
-    else:
-        # Afficher un message d'erreur si le fichier n'existe pas
-        return "Fichier HTML introuvable", 404
+
+@app.route("/assets/<path:path>")
+def assets(path):
+    return send_from_directory("assets", path)
+
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0")
-
+    app.run(host="0.0.0.0") 
