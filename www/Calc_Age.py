@@ -1,6 +1,5 @@
 from datetime import datetime
 import os
-import redis
 
 def calculer_age(date_naissance):
     # Convertir la chaîne de date en objet datetime
