@@ -5,11 +5,12 @@ def calculer_age(date_naissance):
     # Convertir la chaîne de date en objet datetime
     date_format = "%Y-%m-%d"
     date_naissance_utilisateur = os.environ.get("DATE_NAISSANCE", "")
+    
     if not date_naissance_utilisateur:
-    raise ValueError("Date de naissance manquante. Définissez la variable d'environnement DATE_NAISSANCE.")
+        raise ValueError("Date de naissance manquante. Définissez la variable d'environnement DATE_NAISSANCE.")
 
     try:
-        date_naissance = datetime.strptime(date_naissance, date_format)
+        date_naissance = datetime.strptime(date_naissance_utilisateur, date_format)
     except ValueError:
         raise ValueError("Format de date incorrect. Assurez-vous d'utiliser le format YYYY-MM-DD.")
 
@@ -29,7 +30,8 @@ def calculer_age(date_naissance):
     return age
 
 # Demander à l'utilisateur sa date de naissance
-date_naissance_utilisateur = input("Entrez votre date de naissance (format YYYY-MM-DD) : ")
+# La date de naissance est maintenant récupérée de la variable d'environnement DATE_NAISSANCE
+# date_naissance_utilisateur = input("Entrez votre date de naissance (format YYYY-MM-DD) : ")
 
 try:
     # Appeler la fonction pour calculer l'âge
@@ -40,4 +42,3 @@ try:
 
 except ValueError as e:
     print("Erreur :", e)
-
