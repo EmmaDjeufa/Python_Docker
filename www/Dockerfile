@@ -16,7 +16,7 @@ RUN apt-get update
 RUN apt-get install -y apache2
 
 # Copiez votre page HTML dans le répertoire du serveur web d'Apache
-COPY WelcomeING3.html /var/www/html/
+COPY WelcomeING3.html /www/html/
 
 # Exposez le port 80 pour Apache
 EXPOSE 80
