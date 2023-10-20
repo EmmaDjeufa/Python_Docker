@@ -2,6 +2,7 @@ version: "3"
 services:
   www:
     build: www
+    ports:
       - ${PORT-8000}:5000
     user: nobody
     environment:
