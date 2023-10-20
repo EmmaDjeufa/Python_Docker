@@ -6,7 +6,7 @@ services:
     user: nobody
     environment:
       DEBUG: 1
-    command: python Calc_Age.py
+    command: python counter.py
     volumes:
       - ./www:/src
   redis:
