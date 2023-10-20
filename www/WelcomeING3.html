@@ -19,16 +19,40 @@
         p {
             font-size: 1.5em;
         }
+
+        #custom-button {
+            background-color: #ff5733;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
     <h1>Bienvenue en ING3 de CLOUD COMPUTING</h1>
-    <p>Merci de visiter notre page.</p>
+    <p id="dynamic-text">Merci de visiter notre page.</p>
+
+    <button id="custom-button">Cliquez ici</button>
 
     <script>
         // Exemple de code JavaScript
         // Vous pouvez ajouter des fonctionnalités JavaScript ici
+
+        // Récupérez la référence du bouton
+        var button = document.getElementById("custom-button");
+
+        // Récupérez la référence du paragraphe
+        var paragraph = document.getElementById("dynamic-text");
+
+        // Ajoutez un gestionnaire d'événement pour le clic sur le bouton
+        button.addEventListener("click", function () {
+            // Modifiez le texte du paragraphe lorsque le bouton est cliqué
+            paragraph.innerHTML = "Vous avez cliqué sur le bouton !";
+        });
+
         console.log("Le JavaScript fonctionne !");
     </script>
 </body>
 </html>
+
