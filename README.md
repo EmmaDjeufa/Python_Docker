@@ -8,4 +8,4 @@ Pour commencer, on peut cloner le projet et lancer docker-compose en exécutant 
 git clone https://github.com/EmmaDjeufa/Python_Docker.git
 docker-compose up
 
-En fin, ouvrir la page cd http://localhost:8080 dans un navigateur.
+En fin, ouvrir la page http://localhost:8080 dans un navigateur.
