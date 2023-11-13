@@ -1,14 +1,85 @@
-version: "3"
+version: '3.3'
 services:
-  www:
-    build: www
+  webapp:
+    networks: 
+      - backend
+    container_name: webapp
+    build: 
+      context: webapp/
+      dockerfile: Dockerfile
     ports:
-      - ${PORT-8000}:5000
-    user: nobody
-    environment:
-      DEBUG: 1
-    command: python counter.py
+      - '81:80'
     volumes:
-      - ./www:/src
-  redis:
-    image: redis  # il est possible de changer l'image au besoin
+      - './webapp/static-website-example:/var/www/html' 
+
+  classlist:
+    networks: 
+      - backend
+    container_name: api
+    volumes:
+      - '$PWD/json_Datas/student_age.json:/data/student_age.json'
+    build: 
+      context: webapp/
+      dockerfile: Dockerfile
+    ports:
+      - '4500:5000' 
+
+  php:
+    depends_on:
+      - classlist
+    networks: 
+      - backend
+    container_name: ihm-api
+    ports:
+      - '8000:80'
+    environment:
+      - USERNAME=toto
+      - PASSWORD=python
+    volumes:
+      - './PHP:/var/www/html'
+    image: 'php:apache'
+
+  wordpress:
+    build:
+      context: Wordpress&SQL/
+      dockerfile: Dockerfile.wordpress
+    container_name: wordpress-container
+    ports:
+      - 8080:80
+    networks:
+      - backend   
+    volumes:
+      - wordpress:/var/www/html
+    depends_on:
+      - db
+
+  db:
+    build:
+      context: Wordpress&SQL/
+      dockerfile: Dockerfile.mysql
+    container_name: classlist_db  
+    volumes:
+      - 'db:/var/lib/mysql'
+    networks:
+      - backend
+ 
+
+  vscode:
+    build:
+      context: .
+      dockerfile: Dockerfile.vscode
+    container_name: vscode
+    ports:
+      - '8083:8080'  
+    environment:
+      - PASSWORD=emma
+    volumes:
+      - './code:/home/coder/project'  
+      
+volumes:
+  wordpress:
+  db:
+
+networks:
+  backend:
+    driver: bridge
