@@ -1,0 +1,7 @@
+FROM codercom/code-server
+
+USER root
+
+# Installez les extensions VS Code ici si nécessaire
+
+USER coder
