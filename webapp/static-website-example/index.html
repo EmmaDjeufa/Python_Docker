@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue en ING3 de CLOUD COMPUTING</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            color: #495057;
+            line-height: 1.6;
+        }
+
+        main {
+            text-align: center;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #007bff;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            position: relative;
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        p {
+            color: #000000;
+            font-size: 1.2em;
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        /* Barre de menu */
+        .menu-bar {
+            position: fixed;
+            top: 0;
+            right: 0;
+            padding: 10px;
+            display: flex;
+            gap: 10px;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #000000;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Animation pour les éléments */
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Fond d'écran */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://media.istockphoto.com/id/1454789692/fr/photo/autocollants-en-papier-bleu-et-bloc-notes-ou-livre-au-milieu-sur-fond-noir-notes.webp?b=1&s=170667a&w=0&k=20&c=O0Xk0TuOW06OSE3qulGkNBkhcZwnR5lCXSsqeohjmfw=');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.6;
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Barre de menu -->
+    <div class="menu-bar">
+        <a href="http://localhost:8000" class="static-site-link" target="_blank" title="Class Infos"><button id="custom-button" class="pulse-button">consulter</button></a>
+        <a href="http://localhost:8000/alt.php" class="static-site-link" target="_blank" title="Class Info"><button id="custom-button" class="pulse-button">ajouter</button></a>
+    </div>
+
+    <main>
+        <h1>Student Checking App</h1></br>
+
+        <p id="dynamic-text">Merci de visiter notre page. </br>Cliquez sur l'un des bouttons pour ajouter ou consulter </br>des informations sur un étudiant de l'ING3 ICC</p></br></br></br></br></br>
+    </main>
+
+    <script>
+        // Récupérer la référence du bouton
+        var button = document.getElementById("custom-button");
+
+        // Récupérer la référence du paragraphe
+        var paragraph = document.getElementById("dynamic-text");
+
+        // Ajouter un gestionnaire d'événement pour le clic sur le bouton
+        button.addEventListener("click", function () {
+            // Modifier le texte du paragraphe lorsque le bouton est cliqué
+            paragraph.innerHTML = "Vous avez cliqué sur le bouton ! Vous pouvez recommencer pour effectuer une action";
+        });
+    </script>
+    
+    <p>&copy; 2023 Student Checking App. Tout droits réservés.</p>
+</body>
+
+</html>
